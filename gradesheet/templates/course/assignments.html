@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h3>Assignments for {{course.subject_code}} {{course.course_num}}</h3>
+
+{% if assignment_list %}
+    <div class="row">
+        {% for assignment in assignment_list %}
+            <div class="col-sm-6">
+                <div class="card my-3">
+                    <div class="card-body">
+                        <h5 class="card-title">{{assignment.assignment_name}}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{assignment.category.category_name}}</h6>
+                        <a href="{% url 'assignment_detail' course.id assignment.id %}" class="card-link">View Student Grades</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p>No assignments are available.</p>
+{% endif %}
+
+{% endblock content %}

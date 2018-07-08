@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h3>{{ student.english_name }} ({{student.chinese_name}})</h3>
+
+{% if courses %}
+    <ul>
+    {% for course in courses %}
+        <li><a href="{% url 'student_detail_by_course' course.id student.id %}">{{ course.subject_code }} {{ course.course_num }}: {{ course.course_name }}</li>
+    {% endfor %}
+    </ul>
+{% endif %}
+
+{% endblock content %}

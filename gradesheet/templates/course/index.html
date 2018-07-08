@@ -1,0 +1,26 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+
+<h3>Courses</h3>
+
+{% if course_list %}
+
+<div class="row">
+    {% for course in course_list %}
+    <div class="col-sm-6">
+        <div class="card my-3">
+            <div class="card-body">
+                <h5 class="card-title">{{course.subject_code}} {{course.course_num}}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{course.course_name}}</h6>
+                <a href="{% url 'course_assignments' course.id %}" class="card-link">Assignments</a>
+                <a href="{% url 'course_students' course.id %}" class="card-link">Students</a>
+            </div>
+        </div>
+    </div>
+
+    {% endfor %}
+</div>
+{% else %}
+<p>No courses are available.</p>
+{% endif %} {% endblock content %}

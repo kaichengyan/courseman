@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h3>{{ student.english_name }}'s Grades in {{course.subject_code}} {{course.course_num}}</h3>
+
+{% if submissions %}
+    <table class="table mt-4">
+        <tr>
+            <th>Assignment</th>
+            <th>Grade</th>
+            <th>Total Points</th>
+        </tr>
+    {% for submission in submissions %}
+        <tr>
+            <td>{{submission.assignment.assignment_name}} <span class="small text-muted">{{submission.assignment.category.category_name}}</span></td>
+            <td>{{submission.grade}}</td>
+            <td>{{submission.assignment.total_points}}</td>
+        </tr>
+        <tr>
+            <th>Current Percent Grade</th>
+            <th>{{predicted_grade|floatformat:2}}</th>
+            <th>100</th>
+        </tr>
+    {% endfor %}
+    </table>
+{% else %}
+    <p>No submissions are available.</p>
+{% endif %}
+
+{% endblock content %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h3>Students</h3>
+
+{% if student_list %}
+
+<div class="row">
+    {% for student in student_list %}
+    <div class="col-sm-6">
+        <div class="card my-3">
+            <div class="card-body">
+                <h5 class="card-title">{{student.english_name}}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{student.chinese_name}}</h6>
+                <a href="{% url 'student_detail' student.id %}" class="card-link">View Course Grades</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<p>No students are available.</p>
+{% endif %}
+
+{% endblock content %}

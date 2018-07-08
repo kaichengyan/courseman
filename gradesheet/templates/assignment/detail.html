@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h3>{{ assignment.assignment_name }}</h3>
+
+<p class="text-muted">Total points: {{ assignment.total_points }}{% if submissions %}, Average score: {{ average|floatformat:3 }}{% endif %}
+</p>
+
+{% if submissions %}
+    <table class="table">
+        <tr>
+            <th>English Name</th>
+            <th>Chinese Name</th>
+            <th>Grade</th>
+        </tr>
+    {% for submission in submissions %}
+        <tr>
+            <td>{{submission.student.english_name}}</td>
+            <td>{{submission.student.chinese_name}}</td>
+            <td>{{submission.grade}} <span class="text-muted small">/ {{ assignment.total_points }}</span></td>
+        </tr>
+    {% endfor %}
+    </table>
+{% else %}
+    <p>No submissions are available.</p>
+{% endif %}
+
+{% endblock content %}

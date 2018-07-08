@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h3>{{course.subject_code}} {{course.course_num}}: {{course.course_name}}</h3>
+
+<ul>
+    <li>
+        <a href="{% url 'course_students' course.id %}">View Students</a>
+    </li>
+    <li>
+        <a href="{% url 'course_assignments' course.id %}">View Assignments</a>
+    </li>
+</ul>
+
+{% endblock content %}
